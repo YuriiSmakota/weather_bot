@@ -4,7 +4,7 @@ import logging
 from aiogram import Dispatcher, Bot
 from config import config
 
-from heandlers import command_start, command_weather, random_text
+from heandlers import start, weather, unknown_input
 
 
 async def main():
@@ -14,7 +14,7 @@ async def main():
     bot = Bot(token=config.token.get_secret_value(), parse_mode="HTML")
     dp = Dispatcher()
 
-    dp.include_routers(command_start.router, command_weather.router, random_text.router)
+    dp.include_routers(start.router, weather.router, unknown_input.router)
 
     await bot.delete_webhook(drop_pending_updates=True)
     await dp.start_polling(bot)
