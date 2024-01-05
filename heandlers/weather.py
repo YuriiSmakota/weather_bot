@@ -2,7 +2,7 @@ from aiogram import Router
 from aiogram.types import Message
 from aiogram.filters.command import Command
 from aiogram.fsm.context import FSMContext
-from parsers.request_weather import get_temp
+from parsers.request_weather import RequestWeather
 from heandlers.city_input import InputCity
 
 router = Router()
@@ -19,5 +19,5 @@ async def command_weather(message: Message, state: FSMContext):
 async def city_input(message: Message):
 
     city = message.text
-    await message.answer(get_temp(city))
+    await message.answer(RequestWeather.get_weather(city))
 
